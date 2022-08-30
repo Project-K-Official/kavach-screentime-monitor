@@ -1,0 +1,25 @@
+# Maintainer : Team Kavach <https://github.com/Project-K-Official/>
+
+pkgname=kavach-screentime-monitor
+pkgdesc='Simple screentime monitor and notifier'
+pkgver=1
+pkgrel=1
+arch=('any')
+url="https://github.com/Project-K-Official/kavach-screentime-monitor"
+license=('MIT')
+makedepends=('git')
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+package(){
+    install -d ${pkgdir}/usr/share/kavach-screentime-monitor
+    install -d ${pkgdir}/usr/share/applications
+    install -d ${pkgdir}/usr/bin
+    install -d ${pkgdir}/etc/skel/.config/autostart
+
+    cp -r ${srcdir}/kavach-screentime-monitor/src/kavach-screentime-monitor.sh "${pkgdir}/usr/bin/kavach-screentime-monitor.sh"
+    chmod +x "${pkgdir}/usr/bin/kavach-screentime-monitor.sh"
+
+    cp -r ${srcdir}/kavach-screentime-monitor/src/kavach-screentime-monitor.desktop "${pkgdir}/etc/skel/.config/autostart/kavach-screentime-monitor.desktop"
+    chmod +x "${pkgdir}/etc/skel/.config/autostart/kavach-screentime-monitor.desktop"
+}
